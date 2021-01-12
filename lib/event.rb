@@ -56,4 +56,8 @@ class Event
       item.name
     end.sort
   end
+
+  def date
+    Date.today.strftime("%d/%m/%Y")
+  end
 end
