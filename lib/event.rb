@@ -44,11 +44,9 @@ class Event
   end
 
   def overstocked_items
-    overstocked = []
-    total_inventory.each do |item, food_trucks_and_quantities|
-      overstocked << item if food_trucks_and_quantities[:quantity] > 50 && food_trucks_that_sell(item).length > 1
-    end
-    overstocked
+    total_inventory.map do |item, food_trucks_and_quantities|
+      item if food_trucks_and_quantities[:quantity] > 50 && food_trucks_that_sell(item).length > 1
+    end.compact
   end
 
   def sorted_item_list
