@@ -32,15 +32,13 @@ class Event
   end
 
   def total_inventory
-    items = Hash.new(0)
-    items_list.each do |item|
+    items_list.each_with_object({}) do |item,items|
       items[item] = {quantity: 0, food_trucks: []}
       food_trucks_that_sell(item).each do |food_truck|
         items[item][:food_trucks] << food_truck
         items[item][:quantity] += food_truck.check_stock(item)
       end
     end
-    items
   end
 
   def overstocked_items
