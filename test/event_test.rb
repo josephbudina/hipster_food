@@ -1,5 +1,7 @@
+require 'date'
 require 'Minitest/autorun'
 require 'Minitest/pride'
+require 'mocha/minitest'
 require './lib/item'
 require './lib/food_truck'
 require './lib/event'
@@ -197,5 +199,10 @@ class EventTest < Minitest::Test
 
     expected = ["Apple Pie (Slice)", "Banana Nice Cream", "Peach Pie (Slice)", "Peach-Raspberry Nice Cream"]
     assert_equal expected, @event.sorted_item_list
+  end
+
+  def test_it_can_add_date
+    Date.stubs(:today).returns(Date.parse("20200224"))
+    assert_equal "24/02/2020", @event.date
   end
 end
