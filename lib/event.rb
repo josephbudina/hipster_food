@@ -32,11 +32,11 @@ class Event
   end
 
   def total_inventory
-    items_list.each_with_object({}) do |item,items|
-      items[item] = {quantity: 0, food_trucks: []}
+    items_list.each_with_object({}) do |item, items_data|
+      items_data[item] = {quantity: 0, food_trucks: []}
       food_trucks_that_sell(item).each do |food_truck|
-        items[item][:food_trucks] << food_truck
-        items[item][:quantity] += food_truck.check_stock(item)
+        items_data[item][:food_trucks] << food_truck
+        items_data[item][:quantity] += food_truck.check_stock(item)
       end
     end
   end
